@@ -5,9 +5,5 @@ Feature: The Forth interpreter shall accept function definitions
 
   Scenario: If True
      When I execute ": x DUP . . ; 1 x"
-     Then I should get
-      """
-      1 ok
-      1 ok
-      """
+     Then I should get "1 1 ok"
 

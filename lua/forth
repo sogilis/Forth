@@ -51,7 +51,7 @@ symbol_table['*'] = function(...)
 end
 
 symbol_table['.'] = function(...)
-  print(tostring(pop()) .." ok")
+  io.write(tostring(pop()), " ")
 end
 
 symbol_table['<='] = function(...)
@@ -195,7 +195,9 @@ function main_loop()
           end
         end
       end)
-      if not res then
+      if res then
+        io.write("ok\n")
+      else
         io.write(msg, "\n")
       end
     end
