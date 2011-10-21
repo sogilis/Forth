@@ -23,101 +23,18 @@ local push, pop, dispatch, main_loop
 -- dispatch(...) --> procédure appelée pour dispatcher les symboles lus
 -- main_loop()   --> exécute la boucle principale
 
-local make_dispatch_execute_until
-local make_dispatch_skip_until
-
 --
---  Implémantation des fonctions de base de Forth
+--  Implémentation des fonctions de base de Forth
 -----------------------------------------------------
 
 symbol_table['+'] = function(...)
   local a, b = pop(2)
   push(a + b)
-end
-
-symbol_table['-'] = function(...)
-  local a, b = pop(2)
-  push(a - b)
-end
-
-symbol_table['/'] = function(...)
-  local a, b = pop(2)
-  push(a / b)
-end
-
-symbol_table['*'] = function(...)
-  local a, b = pop(2)
-  push(a * b)
-end
+end -- add
 
 symbol_table['.'] = function(...)
   io.write(tostring(pop()), " ")
-end
-
-symbol_table['<='] = function(...)
-  local a, b = pop(2)
-  push(a <= b)
-end
-
-symbol_table['<'] = function(...)
-  local a, b = pop(2)
-  push(a < b)
-end
-
-symbol_table['>='] = function(...)
-  local a, b = pop(2)
-  push(a >= b)
-end
-
-symbol_table['>'] = function(...)
-  local a, b = pop(2)
-  push(a > b)
-end
-
--- Comment
-symbol_table['('] = function(original_dispatcher)
-  return make_dispatch_skip_until(")", original_dispatcher)
-end
-
--- Define new symbol
-symbol_table[':'] = function(original_dispatcher)
-  local accumulator = {}
-  return function(disp, word)
-    if word == ";" then
-      local sym = table.remove(accumulator, 1)
-      symbol_table[sym] = function(disp)
-        dispatch_list(original_dispatcher, accumulator)
-      end
-      return original_dispatcher
-    else
-      accumulator[#accumulator+1] = word
-    end
-  end
-end
-
-symbol_table.NOP = function(...)
-end
-
-symbol_table.DUP = function(...)
-  local a = pop()
-  push(a, a)
-end
-
-symbol_table.DROP = function(...)
-  pop()
-end
-
-symbol_table.IF = function(original_dispatcher)
-  if pop() then
-    return make_dispatch_execute_until(original_dispatcher, "ELSE",
-      make_dispatch_skip_until("THEN",
-        original_dispatcher))
-  else
-    return make_dispatch_skip_until("ELSE",
-      make_dispatch_execute_until(original_dispatcher, "THEN",
-        original_dispatcher))
-  end
-end
+end -- pop
 
 --
 --  Dispatch
@@ -142,38 +59,7 @@ function dispatch(disp, word)
     error(word.." invalid symbol")
 
   end
-end
-
-function dispatch_list(disp, list)
-  for i = 1, #list do
-    local res = disp(disp, list[i])
-    if res ~= nil then
-      disp = res
-    end
-  end
-end
-
---
---  Dispatcher Factories
-----------------------------
-
-function make_dispatch_execute_until(original_dispatcher, until_word, after_dispatcher)
-  return function(disp, word)
-    if word == until_word then
-      return after_dispatcher
-    else
-      return original_dispatcher(disp, word)
-    end
-  end
-end
-
-function make_dispatch_skip_until(until_word, after_dispatcher)
-  return function(disp, word)
-    if word == until_word then
-      return after_dispatcher
-    end
-  end
-end
+end -- dispatch
 
 --
 --  Boucle principale
@@ -202,7 +88,7 @@ function main_loop()
       end
     end
   end
-end
+end -- main_loop
 
 --
 --  Fonctions concernant la pile
@@ -217,13 +103,13 @@ function pop(n)
     res[#res + 1] = last
     return table.unpack(res)
   end
-end
+end -- pop
 
 function push(...)
   for i = 1, select("#", ...) do
     stack[#stack+1] = select(i, ...)
   end
-end
+end -- push
 
 --
 --  Exécution
