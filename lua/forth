@@ -212,12 +212,9 @@ function pop(n)
   if n == nil or n == 1 then
     return table.remove(stack)
   else
-    res = {}
-    max = #stack
-    for i = 1, n do
-      res[i] = stack[max - n + i]
-      stack[max - n + i] = nil
-    end
+    local last    = pop(1)
+    local res     = { pop(n-1) }
+    res[#res + 1] = last
     return table.unpack(res)
   end
 end
