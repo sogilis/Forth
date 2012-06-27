@@ -32,6 +32,11 @@ symbol_table['+'] = function(...)
   push(a + b)
 end -- add
 
+symbol_table['-'] = function(...)
+  local a, b = pop(2)
+  push(a - b)
+end -- substract
+
 symbol_table['.'] = function(...)
   io.write(tostring(pop()), " ")
 end -- pop
