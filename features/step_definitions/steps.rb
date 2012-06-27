@@ -23,3 +23,6 @@ Then /^I should get$/ do |string|
   got.should == "#{string}\n"
 end
 
+Then /^I should receive the error "([^"]*)"$/ do |error_message|
+  @forth_i.gets.should include error_message
+end
