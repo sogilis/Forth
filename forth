@@ -49,6 +49,26 @@ symbol_table['.'] = function(...)
   io.write(tostring(pop()), " ")
 end -- '.'
 
+symbol_table['<='] = function(...)
+  local b, a = pop(), pop()
+  push(a <= b)
+end -- less/equal
+
+symbol_table['<'] = function(...)
+  local b, a = pop(), pop()
+  push(a < b)
+end -- less
+
+symbol_table['>='] = function(...)
+  local b, a = pop(), pop()
+  push(a >= b)
+end -- greater/equal
+
+symbol_table['>'] = function(...)
+  local b, a = pop(), pop()
+  push(a > b)
+end -- greater
+
 symbol_table.IF = function(original_dispatcher)
   if pop() then
     return make_dispatch_execute_until(original_dispatcher, "ELSE",
