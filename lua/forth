@@ -144,6 +144,15 @@ function dispatch(disp, word)
   end
 end -- dispatch
 
+function dispatch_list(disp, list)
+  for i = 1, #list do
+    local res = disp(disp, list[i])
+    if res ~= nil then
+      disp = res
+    end
+  end
+end -- dispatch_list
+
 --
 --  Dispatcher Factories
 ----------------------------
