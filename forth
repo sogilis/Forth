@@ -23,6 +23,9 @@ local push, pop, dispatch, main_loop
 -- dispatch(...) --> procédure appelée pour dispatcher les symboles lus
 -- main_loop()   --> exécute la boucle principale
 
+local make_dispatch_execute_until
+local make_dispatch_skip_until
+
 --
 --  Implémentation des fonctions de base de Forth
 -----------------------------------------------------
@@ -70,6 +73,28 @@ function dispatch(disp, word)
 
   end
 end -- dispatch
+
+--
+--  Dispatcher Factories
+----------------------------
+
+function make_dispatch_execute_until(original_dispatcher, until_word, after_dispatcher)
+  return function(disp, word)
+    if word == until_word then
+      return after_dispatcher
+    else
+      return original_dispatcher(disp, word)
+    end
+  end
+end -- make_dispatch_execute_until
+
+function make_dispatch_skip_until(until_word, after_dispatcher)
+  return function(disp, word)
+    if word == until_word then
+      return after_dispatcher
+    end
+  end
+end -- make_dispatch_skip_until
 
 --
 --  Boucle principale
