@@ -12,6 +12,8 @@
 local stack        = {} -- pile d'exécution
 local symbol_table = {} -- table des symboles (fonctions)
 
+local VERSION = 3.14
+
 --
 --  Procédures
 ------------------
@@ -69,6 +71,10 @@ symbol_table.STACK = function(...)
     io.write(tostring(stack[i]), " ")
   end
 end -- STACK
+
+symbol_table.VERSION = function(...)
+  push(VERSION)
+end -- VERSION
 
 symbol_table['<='] = function(...)
   local a, b = pop(2)

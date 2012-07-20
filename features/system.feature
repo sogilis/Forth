@@ -12,3 +12,7 @@ Feature: The Forth interpreter shall understand system commands
     Then I should get "3 1 2 ok"
     When I execute "STACK"
     Then I should get "3 1 2 ok"
+
+  Scenario: VERSION
+    When I execute "VERSION ."
+    Then I should get "3.14 ok"
