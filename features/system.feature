@@ -16,3 +16,7 @@ Feature: The Forth interpreter shall understand system commands
   Scenario: VERSION
     When I execute "VERSION ."
     Then I should get "3.14 ok"
+
+  Scenario: EXIT
+    When I execute "1 . EXIT 2 ."
+    Then I should get "1 exited"
