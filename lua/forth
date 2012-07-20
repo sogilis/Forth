@@ -76,6 +76,10 @@ symbol_table.VERSION = function(...)
   push(VERSION)
 end -- VERSION
 
+symbol_table.CREDITS = function(...)
+  io.write("Simon", " ")
+end -- CREDITS
+
 symbol_table['<='] = function(...)
   local a, b = pop(2)
   push(a <= b)
