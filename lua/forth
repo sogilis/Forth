@@ -42,6 +42,11 @@ symbol_table['*'] = function(...)
   push(a * b)
 end -- multiply
 
+symbol_table['/'] = function(...)
+  local a, b = pop(2)
+  push(a / b)
+end -- divide
+
 symbol_table['.'] = function(...)
   io.write(tostring(pop()), " ")
 end -- pop

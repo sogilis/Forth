@@ -15,6 +15,10 @@ Feature: The Forth interpreter shall understand basic operations
      When I execute "5 7 * ."
      Then I should get "35 ok"
 
+  Scenario: Division
+    When I execute "45 15 / ."
+    Then I should get "3 ok"
+
   Scenario: Duplication
     When I execute "1 DUP . ."
     Then I should get "1 1 ok"
