@@ -77,7 +77,7 @@ symbol_table.VERSION = function(...)
 end -- VERSION
 
 symbol_table.CREDITS = function(...)
-  io.write("Simon", " ")
+  io.write("Credits: ", "Simon", " ")
 end -- CREDITS
 
 symbol_table['<='] = function(...)
