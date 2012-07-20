@@ -19,6 +19,10 @@ Feature: The Forth interpreter shall understand basic operations
     When I execute "45 15 / ."
     Then I should get "3 ok"
 
+  Scenario: Multiplication and addition
+    When I execute "25 10 * 50 + ."
+    Then I should get "300 ok"
+
   Scenario: Duplication
     When I execute "1 DUP . ."
     Then I should get "1 1 ok"
