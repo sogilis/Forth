@@ -1,0 +1,56 @@
+From 7199b04061a44e6077e1bf1cb67e3aceb01382f9 Mon Sep 17 00:00:00 2001
+From: Simon Denier <simon@sogilis.com>
+Date: Thu, 19 Jul 2012 11:40:41 +0200
+Subject: [PATCH 2/3] Define Forth conditions
+
+---
+ features/conditions.feature |   13 +++++++++++++
+ lua/forth                   |   12 ++++++++++++
+ 2 files changed, 25 insertions(+)
+ create mode 100644 features/conditions.feature
+
+diff --git a/features/conditions.feature b/features/conditions.feature
+new file mode 100644
+index 0000000..ef3f504
+--- /dev/null
++++ b/features/conditions.feature
+@@ -0,0 +1,13 @@
++Feature: The Forth interpreter shall understand IF constructions
++
++  Background:
++    Given a forth interpreter
++
++  Scenario: If True
++     When I execute "3 5 < IF 1 . ELSE 2 . THEN 3 ."
++     Then I should get "1 3 ok"
++
++  Scenario: If False
++     When I execute "6 5 < IF 1 . ELSE 2 . THEN 3 ."
++     Then I should get "2 3 ok"
++
+diff --git a/lua/forth b/lua/forth
+index 17347ab..95d0628 100755
+--- a/lua/forth
++++ b/lua/forth
+@@ -39,6 +39,18 @@ symbol_table['.'] = function(...)
+   io.write(tostring(pop()), " ")
+ end -- pop
+ 
++symbol_table.IF = function(original_dispatcher)
++  if pop() then
++    return make_dispatch_execute_until(original_dispatcher, "ELSE",
++      make_dispatch_skip_until("THEN",
++        original_dispatcher))
++  else
++    return make_dispatch_skip_until("ELSE",
++      make_dispatch_execute_until(original_dispatcher, "THEN",
++        original_dispatcher))
++  end
++end -- IF/ELSE
++
+ --
+ --  Dispatch
+ ----------------
+-- 
+1.7.10.2 (Apple Git-33)
+
