@@ -116,6 +116,7 @@ end -- main_loop
 ------------------------------------
 
 function pop(n)
+  assert(#stack > 0, "stack is empty")
   if n == nil or n == 1 then
     return table.remove(stack)
   else
