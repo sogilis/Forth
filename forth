@@ -18,7 +18,7 @@ local symbol_table = {} -- table des symboles (fonctions)
 
 local push, pop, dispatch, main_loop
 
--- pop(n)        --> dépile les n dernières valeurs de la pile `stack`
+-- pop()         --> dépile la dernière valeur de la pile `stack`
 -- push(a, ...)  --> empile toutes les valeurs passées en paramètre dans `stack`
 -- dispatch(...) --> procédure appelée pour dispatcher les symboles lus
 -- main_loop()   --> exécute la boucle principale
@@ -28,7 +28,7 @@ local push, pop, dispatch, main_loop
 -----------------------------------------------------
 
 symbol_table['+'] = function(...)
-  local a, b = pop(2)
+  local a, b = pop(), pop()
   push(a + b)
 end -- add
 
@@ -95,14 +95,7 @@ end -- main_loop
 ------------------------------------
 
 function pop(n)
-  if n == nil or n == 1 then
-    return table.remove(stack)
-  else
-    local last    = pop(1)
-    local res     = { pop(n-1) }
-    res[#res + 1] = last
-    return table.unpack(res)
-  end
+  return table.remove(stack)
 end -- pop
 
 function push(...)
