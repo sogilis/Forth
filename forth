@@ -116,6 +116,7 @@ end -- main_loop
 ------------------------------------
 
 function pop(n)
+  assert(#stack > 0, "stack is empty")
   return table.remove(stack)
 end -- pop
 
