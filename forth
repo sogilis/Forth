@@ -27,6 +27,11 @@ local push, pop, dispatch, main_loop
 --  Implémentation des fonctions de base de Forth
 -----------------------------------------------------
 
+symbol_table['*'] = function(...)
+  local a, b = pop(), pop()
+  push(a * b)
+end -- '*'
+
 symbol_table['-'] = function(...)
   local b, a = pop(), pop()
   push(a - b)
