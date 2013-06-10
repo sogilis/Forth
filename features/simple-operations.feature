@@ -7,3 +7,7 @@ Feature: The Forth interpreter shall understand basic operations
      When I execute "3 4 + ."
      Then I should get "7 ok"
 
+  Scenario: Substraction
+     When I execute "3 4 - ."
+     Then I should get "-1 ok"
+
