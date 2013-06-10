@@ -46,6 +46,12 @@ symbol_table['.'] = function(...)
   io.write(tostring(pop()), " ")
 end -- '.'
 
+symbol_table.STACK = function(...)
+  for i = 1, #stack do
+    io.write(tostring(stack[i]), " ")
+  end
+end -- STACK
+
 --
 --  Dispatch
 ----------------
