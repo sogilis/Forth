@@ -19,4 +19,6 @@ Feature: The Forth interpreter shall understand basic operations
      When I execute "1 DUP . ."
      Then I should get "1 1 ok"
 
-
+  Scenario: Division
+     When I execute "5 2 / ."
+     Then I should get "2.5 ok"
