@@ -27,6 +27,14 @@ Feature: The Forth interpreter shall understand basic operations
      When I execute "5 2 / ."
      Then I should get "2.5 ok"
 
+  Scenario: Quotient
+     When I execute "5 2 // ."
+     Then I should get "2 ok"
+
+  Scenario: Modulo
+     When I execute "5 2 % ."
+     Then I should get "1 ok"
+
   Scenario: Negation
      When I execute "1 NEG ."
      Then I should get "-1 ok"
