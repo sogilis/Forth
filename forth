@@ -118,7 +118,7 @@ function dispatch(disp, word)
                                   -- appeler la fonction correspondante
     return symbol_table[word](disp)
   
-  elseif word:find("^%d+$") then  -- Si c'est un nombre, empiler `word`
+  elseif word:find("^%d+%.?%d*$") then  -- Si c'est un nombre, empiler `word`
     push(tonumber(word))
 
   else                            -- Sinon, erreur
