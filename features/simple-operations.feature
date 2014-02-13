@@ -3,6 +3,10 @@ Feature: The Forth interpreter shall understand basic operations
   Background:
     Given a forth interpreter
 
+  Scenario: Float Input
+     When I execute "5.5 4 . ."
+     Then I should get "4 5.5 ok"
+
   Scenario: Addition
      When I execute "3 4 + ."
      Then I should get "7 ok"
