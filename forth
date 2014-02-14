@@ -39,6 +39,11 @@ symbol_table.DUP = function(...)
   push(a, a)
 end -- DUP
 
+symbol_table.SWAP = function(...)
+  local a, b = pop(2)
+  push(b, a)
+end -- SWAP
+
 symbol_table['*'] = function(...)
   local a, b = pop(2)
   push(a * b)
