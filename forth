@@ -88,6 +88,11 @@ symbol_table.STACK = function(...)
   end
 end -- STACK
 
+symbol_table.EXIT = function(...)
+  print "bye"
+  os.exit()
+end -- EXIT
+
 symbol_table['<='] = function(...)
   local a, b = pop(2)
   push(a <= b)
