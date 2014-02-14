@@ -30,6 +30,10 @@ local make_dispatch_skip_until
 --  Implémentation des fonctions de base de Forth
 -----------------------------------------------------
 
+symbol_table.DROP = function(...)
+  pop()
+end -- DROP
+
 symbol_table.DUP = function(...)
   local a = pop()
   push(a, a)
