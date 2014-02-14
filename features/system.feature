@@ -12,3 +12,7 @@ Feature: The Forth interpreter shall understand system commands
     Then I should get "3 1 2 ok"
     When I execute "STACK"
     Then I should get "3 1 2 ok"
+
+  Scenario: EXIT
+    When I execute "1 . EXIT 2 ."
+    Then I should get "1 bye"
