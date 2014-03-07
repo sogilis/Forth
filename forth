@@ -92,6 +92,12 @@ symbol_table.STACK = function(...)
   end
 end -- STACK
 
+symbol_table.WORDS = function(...)
+  for sym, func in pairs(symbol_table) do
+    io.write(sym, " ")
+  end
+end -- WORDS
+
 symbol_table.EXIT = function(...)
   print "bye"
   os.exit()
