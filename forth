@@ -44,6 +44,10 @@ symbol_table.SWAP = function(...)
   push(b, a)
 end -- SWAP
 
+symbol_table.CLEAR = function(...)
+  stack = {}
+end -- CLEAR
+
 symbol_table['*'] = function(...)
   local a, b = pop(2)
   push(a * b)
