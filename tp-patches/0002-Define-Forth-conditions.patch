@@ -1,11 +1,11 @@
-From 7199b04061a44e6077e1bf1cb67e3aceb01382f9 Mon Sep 17 00:00:00 2001
+From f36b56c8fe61c1d6000427c1ed099bd3a35f2e79 Mon Sep 17 00:00:00 2001
 From: Simon Denier <simon@sogilis.com>
 Date: Thu, 19 Jul 2012 11:40:41 +0200
 Subject: [PATCH 2/3] Define Forth conditions
 
 ---
- features/conditions.feature |   13 +++++++++++++
- lua/forth                   |   12 ++++++++++++
+ features/conditions.feature | 13 +++++++++++++
+ forth                       | 12 ++++++++++++
  2 files changed, 25 insertions(+)
  create mode 100644 features/conditions.feature
 
@@ -28,13 +28,13 @@ index 0000000..ef3f504
 +     When I execute "6 5 < IF 1 . ELSE 2 . THEN 3 ."
 +     Then I should get "2 3 ok"
 +
-diff --git a/lua/forth b/lua/forth
-index 17347ab..95d0628 100755
---- a/lua/forth
-+++ b/lua/forth
-@@ -39,6 +39,18 @@ symbol_table['.'] = function(...)
+diff --git a/forth b/forth
+index 9576cbe..28af5ce 100755
+--- a/forth
++++ b/forth
+@@ -49,6 +49,18 @@ symbol_table['.'] = function(...)
    io.write(tostring(pop()), " ")
- end -- pop
+ end -- '.'
  
 +symbol_table.IF = function(original_dispatcher)
 +  if pop() then
@@ -52,5 +52,5 @@ index 17347ab..95d0628 100755
  --  Dispatch
  ----------------
 -- 
-1.7.10.2 (Apple Git-33)
+1.8.1.3
 
