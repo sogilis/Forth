@@ -8,7 +8,7 @@ $forth_interpreter = File.join($root_dir, "forth")
 def close_forth
   @forth_i.close unless @forth_i.nil?
   @forth_o.close unless @forth_o.nil?
-  @forth_o.close unless @forth_e.nil?
+  @forth_e.close unless @forth_e.nil?
 end
 
 def open_forth!
