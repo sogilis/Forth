@@ -7,12 +7,12 @@ Given /^a forth interpreter$/ do
 end
 
 When /^I execute "([^"]*)"$/ do |arg|
-  @forth_i.read(2).should == "> "
+  expect(@forth_i.read(2)).to eq("> ")
   @forth_o.puts "#{arg}\n"
 end
 
 Then /^I should get "([^"]*)"$/ do |arg|
-  @forth_i.gets.should == "#{arg}\n"
+  expect(@forth_i.gets).to eq("#{arg}\n")
 end
 
 Then /^I should get$/ do |string|
@@ -20,9 +20,9 @@ Then /^I should get$/ do |string|
   string.split("\n").length.times do
     got += @forth_i.gets
   end
-  got.should == "#{string}\n"
+  expect(got).to eq("#{string}\n")
 end
 
 Then /^I should receive the error "([^"]*)"$/ do |error_message|
-  @forth_i.gets.should include error_message
+  expect(@forth_i.gets).to include(error_message)
 end
