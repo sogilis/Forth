@@ -87,7 +87,7 @@ symbol_table.NOP = function(...)
 end -- 'NOP'
 
 symbol_table.STACK = function(...)
-  for i = 1, #stack do
+  for i = 2, #stack do
     io.write(tostring(stack[i]), " ")
   end
 end -- STACK
