@@ -4,7 +4,7 @@
 --  Ceci est une implémentation basique du langage Forth en Lua  --
 -------------------------------------------------------------------
 --
--- Author: Guillaume
+-- Author: Guillaume Couzy
 
 
 --
