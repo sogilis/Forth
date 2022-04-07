@@ -3,8 +3,6 @@
 -------------------------------------------------------------------
 --  Ceci est une implémentation basique du langage Forth en Lua  --
 -------------------------------------------------------------------
---
--- Author: Guillaume Couzy, Aurélien Carlier
 
 
 --
